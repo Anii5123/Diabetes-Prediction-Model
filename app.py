@@ -3,6 +3,63 @@ import pickle
 import numpy as np
 import sklearn
 
+# Custom CSS for styling
+st.markdown(
+    """
+    <style>
+    /* Background and text styles */
+    body {
+        background-color: #f4f4f4;
+        color: #333;
+        font-family: 'Arial', sans-serif;
+    }
+    
+    /* Title Styling */
+    .title {
+        color: #2E86C1;
+        font-size: 32px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* Button Styling */
+    .stButton>button {
+        background-color: #2E86C1;
+        color: white;
+        font-size: 18px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .stButton>button:hover {
+        background-color: #1F618D;
+        color: #FFF;
+    }
+
+    /* Input Field Styling */
+    .stNumberInput>div>div>input {
+        border-radius: 8px;
+        border: 1px solid #2E86C1;
+        padding: 8px;
+    }
+    
+    /* Success Message */
+    .stAlert[data-testid="stAlert-success"] {
+        background-color: #D4EDDA;
+        color: #155724;
+        font-weight: bold;
+    }
+
+    /* Error Message */
+    .stAlert[data-testid="stAlert-error"] {
+        background-color: #F8D7DA;
+        color: #721C24;
+        font-weight: bold;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Load the trained model and scaler
 try:
     model = pickle.load(open('model.pkl', 'rb'))
@@ -12,7 +69,7 @@ except Exception as e:
     st.stop()
 
 # Streamlit UI
-st.title("🩺 Diabetes Prediction App")
+st.markdown('<h1 class="title">🩺 Diabetes Prediction App</h1>', unsafe_allow_html=True)
 st.write("Fill in the details below and click **Predict Diabetes**.")
 
 # User input fields
