@@ -1,59 +1,79 @@
 import streamlit as st
 import pickle
 import numpy as np
-import sklearn
 
-# Custom CSS for styling
+# Inject custom CSS styles
 st.markdown(
     """
     <style>
-    /* Background and text styles */
-    body {
-        background-color: #f4f4f4;
+    /* Import Google Font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    /* Apply font to entire app */
+    html, body, [class*="st-"] {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #f4f4f4, #d4edda);
         color: #333;
-        font-family: 'Arial', sans-serif;
     }
-    
-    /* Title Styling */
+
+    /* Style for the title */
     .title {
         color: #2E86C1;
-        font-size: 32px;
+        font-size: 36px;
+        font-weight: 600;
         text-align: center;
-        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    /* Card container */
+    .card {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: 60%;
+        margin: auto;
+    }
+
+    /* Input field styling */
+    .stNumberInput>div>div>input {
+        border: 2px solid #2E86C1;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 16px;
     }
 
     /* Button Styling */
     .stButton>button {
-        background-color: #2E86C1;
+        background: linear-gradient(to right, #2E86C1, #1F618D);
         color: white;
         font-size: 18px;
-        padding: 10px;
-        border-radius: 10px;
+        padding: 12px;
+        border-radius: 12px;
+        border: none;
+        transition: all 0.3s ease-in-out;
+        width: 100%;
     }
     .stButton>button:hover {
-        background-color: #1F618D;
-        color: #FFF;
+        background: linear-gradient(to right, #1F618D, #2E86C1);
+        transform: scale(1.05);
     }
 
-    /* Input Field Styling */
-    .stNumberInput>div>div>input {
-        border-radius: 8px;
-        border: 1px solid #2E86C1;
-        padding: 8px;
-    }
-    
-    /* Success Message */
+    /* Success & Error Messages */
     .stAlert[data-testid="stAlert-success"] {
         background-color: #D4EDDA;
         color: #155724;
         font-weight: bold;
+        padding: 12px;
+        border-radius: 8px;
     }
 
-    /* Error Message */
     .stAlert[data-testid="stAlert-error"] {
         background-color: #F8D7DA;
         color: #721C24;
         font-weight: bold;
+        padding: 12px;
+        border-radius: 8px;
     }
     </style>
     """,
@@ -70,7 +90,7 @@ except Exception as e:
 
 # Streamlit UI
 st.markdown('<h1 class="title">🩺 Diabetes Prediction App</h1>', unsafe_allow_html=True)
-st.write("Fill in the details below and click **Predict Diabetes**.")
+st.markdown('<div class="card">', unsafe_allow_html=True)
 
 # User input fields
 pregnancies = st.number_input("Pregnancies", min_value=0, max_value=20, value=0, step=1)
@@ -101,3 +121,5 @@ if st.button("Predict Diabetes"):
             st.success("✅ The model predicts **No Diabetes**.")
     except Exception as e:
         st.error(f"Error making prediction: {e}")
+
+st.markdown('</div>', unsafe_allow_html=True)
