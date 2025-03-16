@@ -26,12 +26,13 @@ st.markdown(
     }
 
     /* Card container */
-    .card {
+    .card-text {
         background: white;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        width: 60%;
+        padding: 10px;
+        border-radius: 4px;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        width: 30%;
+        text-color: #333;
         margin: auto;
     }
 
@@ -90,7 +91,7 @@ except Exception as e:
 
 # Streamlit UI
 st.markdown('<h1 class="title">🩺 Diabetes Prediction App</h1>', unsafe_allow_html=True)
-st.markdown('<div class="card">', unsafe_allow_html=True)
+st.markdown('<p class="card-text">Give Your Inputs: </p>', unsafe_allow_html=True)
 
 # User input fields
 pregnancies = st.number_input("Pregnancies", min_value=0, max_value=20, value=0, step=1)
