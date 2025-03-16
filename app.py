@@ -43,21 +43,25 @@ st.markdown(
         font-size: 16px;
     }
 
-    /* Button Styling - Default Streamlit Styling (No Background Change) */
+    /* Button Styling */
     .stButton>button {
+        background: linear-gradient(to right, #2E86C1, #1F618D);
+        color: white;
         font-size: 18px;
         padding: 12px;
         border-radius: 12px;
-        width: 100%;
         border: none;
+        transition: all 0.3s ease-in-out;
+        width: 100%;
     }
     .stButton>button:hover {
+        background: linear-gradient(to right, #1F618D, #2E86C1);
         transform: scale(1.05);
     }
 
     /* Success & Error Messages */
     .stAlert[data-testid="stAlert-success"] {
-        background-color: transparent !important;
+        background-color: #D4EDDA;
         color: #155724;
         font-weight: bold;
         padding: 12px;
@@ -65,7 +69,7 @@ st.markdown(
     }
 
     .stAlert[data-testid="stAlert-error"] {
-        background-color: transparent !important;
+        background-color: #F8D7DA;
         color: #721C24;
         font-weight: bold;
         padding: 12px;
@@ -112,9 +116,9 @@ if st.button("Predict Diabetes"):
 
         # Show result
         if prediction[0] == 1:
-            st.markdown('<p style="color:#721C24; font-weight:bold;">⚠️ The model predicts **Diabetes**.</p>', unsafe_allow_html=True)
+            st.error("⚠️ The model predicts **Diabetes**.")
         else:
-            st.markdown('<p style="color:#155724; font-weight:bold;">✅ The model predicts **No Diabetes**.</p>', unsafe_allow_html=True)
+            st.success("✅ The model predicts **No Diabetes**.")
     except Exception as e:
         st.error(f"Error making prediction: {e}")
 
